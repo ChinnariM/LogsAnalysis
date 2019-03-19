@@ -27,18 +27,18 @@ psql -d news
 ------------------
 Create the Following Views before running the logsanalysis.py file
 
-CREATE VIEW errored_request AS
- SELECT to_char(log.time, 'MM_DD_YYYY') "day", count(log.status) as errored_request_count
+CREATE VIEW erroredlog_count AS
+ SELECT to_char(log.time, 'MM_DD_YYYY') as date, count(log.id) as error_count
      FROM log
  WHERE status = '404 NOT FOUND'
-     GROUP BY 1
-     ORDER BY 1;
+     GROUP BY 1;
+     
 
-CREATE VIEW request AS
-SELECT to_char(log.time, 'MM_DD_YYYY') "day", count(log.status) as total_request_count
+CREATE VIEW requestlog_count AS
+SELECT to_char(log.time, 'MM_DD_YYYY') as date , count(log.id) as request_count
     FROM log
-    GROUP BY 1
-    ORDER BY 1;
+    GROUP BY 1;
+    
 	
 ## Running the Script
 ---------------------

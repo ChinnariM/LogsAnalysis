@@ -44,15 +44,15 @@ def logs_analysis():
 
 # Question 3
 # On which days did more than 1% of requests lead to errors?
-    most_errored_request_day = """SELECT errored_request.day,
-    round ((100*errored_request.errored_request_count/
-    request.total_request_count),2)
-    as percentage
-    FROM errored_request, request
-    WHERE errored_request.day = request.day
-    AND (errored_request.errored_request_count) >
-    (request.total_request_count/100)
-    ORDER BY percentage desc LIMIT 1 """
+    most_errored_request_day = """SELECT erroredlog.date,
+    round ((100*erroredlog.error_count/
+    requestlog.request_count),2)
+    as percent
+    FROM erroredlog, requestlog
+    WHERE erroredlog.date = requestlog.date
+    AND (erroredlog.error_count) >
+    (requestlog.request_count/100)
+    ORDER BY percent desc LIMIT 1;"""
     c.execute(most_errored_request_day)
     print("most request Errored Day:")
     print("-------------------------")
