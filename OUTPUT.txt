@@ -15,4 +15,4 @@ Markoff Chaney 84557
 
 most request Errored Day:
 -------------------------
-07_17_2016 2.26%
+07_17_2016 2.00
