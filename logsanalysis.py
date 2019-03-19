@@ -3,12 +3,10 @@ import psycopg2
 
 
 def logs_analysis():
-    try:
-        db = psycopg2.connect("dbname=news")
-    except psycopg2.DatabaseError, e:
-        print("User is not able to connect to DB....")
-
+    
+    db = psycopg2.connect("dbname=news")
     c = db.cursor()
+
 # Question 1
 # most viewed article
     popular_article_list = """SELECT articles.title, count(log.path) as viewcount
@@ -64,8 +62,8 @@ def logs_analysis():
             print(elem, end=' ')
     print()
     print ('\n')
-c.close()
-db.close()
+    c.close()
+    db.close()
 
 if __name__ == '__main__':
     logs_analysis()
